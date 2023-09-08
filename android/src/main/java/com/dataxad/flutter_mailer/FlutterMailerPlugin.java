@@ -7,7 +7,6 @@ import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.embedding.engine.plugins.activity.ActivityAware;
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
 import io.flutter.plugin.common.MethodChannel;
-import io.flutter.plugin.common.PluginRegistry;
 import io.flutter.plugin.common.BinaryMessenger;
 
 
@@ -18,13 +17,6 @@ public class FlutterMailerPlugin implements FlutterPlugin, ActivityAware {
 
     private @Nullable
     ActivityPluginBinding activityBinding;
-
-    public static void registerWith(PluginRegistry.Registrar registrar) {
-        final FlutterMailerPlugin plugin = new FlutterMailerPlugin();
-        final MethodCallHandlerImpl methodCallHandler = new MethodCallHandlerImpl(registrar.context(), registrar.activity());
-        registrar.addActivityResultListener(methodCallHandler);
-        plugin.setupChannel(registrar.messenger(), methodCallHandler);
-    }
 
     @Override
     public void onAttachedToEngine(FlutterPluginBinding binding) {

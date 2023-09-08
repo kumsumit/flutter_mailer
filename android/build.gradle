@@ -8,7 +8,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.2'
+        classpath 'com.android.tools.build:gradle:8.1.1'
     }
 }
 
@@ -26,7 +26,11 @@ android {
     if (project.android.hasProperty("namespace")) {
         namespace 'icom.dataxad.flutter_mailer'
     }
-    compileSdkVersion 28
+    compileSdkVersion 34
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
 
     defaultConfig {
         minSdkVersion 16
@@ -38,5 +42,5 @@ android {
 }
 
 dependencies {
-    api 'androidx.core:core:1.1.0'
+    api 'androidx.core:core:1.10.1'
 }

@@ -83,7 +83,7 @@ class _MyAppState extends State<MyApp> {
             children: <Widget>[
               Text(
                 'Message',
-                style: Theme.of(context).textTheme.subtitle1,
+                style: Theme.of(context).textTheme.titleMedium,
               ),
               Text(error.message ?? 'unknown error'),
             ],
@@ -245,7 +245,7 @@ class _MyAppState extends State<MyApp> {
               Builder(
                 builder: (BuildContext context) => TextButton(
                   style: TextButton.styleFrom(
-                    primary: Theme.of(context).primaryColor,
+                    foregroundColor: Theme.of(context).primaryColor,
                   ),
                   child: const Text('add text File'),
                   onPressed: () => _onCreateFile(context),
@@ -313,7 +313,7 @@ class _MyAppState extends State<MyApp> {
               children: [
                 Text(
                   'use Temp directory',
-                  style: Theme.of(context).textTheme.caption,
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
                 Switch(
                   value: useTempDirectory,
@@ -332,8 +332,7 @@ class _MyAppState extends State<MyApp> {
               children: <Widget>[
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Theme.of(context).colorScheme.secondary,
-                    onPrimary: Theme.of(context).colorScheme.secondary,
+                    foregroundColor: Theme.of(context).colorScheme.secondary, backgroundColor: Theme.of(context).colorScheme.secondary,
                   ),
                   child: const Icon(Icons.save),
                   onPressed: () {

@@ -10,8 +10,10 @@ dependencies:
 dev_dependencies: 
   flutter_test:
     sdk: flutter
-  image_picker: ^0.8.9
-  path_provider: ^2.0.15
+  image_picker:
+    git: https://github.com/kumsumit/image_picker.git
+  path_provider:
+    git: https://github.com/kumsumit/path_provider.git
   integration_test:
     sdk: flutter
   flutter_driver:

@@ -75,7 +75,7 @@ class MethodCallHandlerImpl implements MethodChannel.MethodCallHandler, PluginRe
                 result.error(e.errorCode, e.errorMessage, e.errorDetails);
                 mResult = null;
             } catch (Exception e) {
-                Log.e(TAG, e.getMessage());
+                if(e.getMessage() != null) Log.e(TAG, e.getMessage());
                 result.error("UNKNOWN", e.getMessage(), null);
                 mResult = null;
             }
@@ -116,7 +116,7 @@ class MethodCallHandlerImpl implements MethodChannel.MethodCallHandler, PluginRe
             final String body = options.argument(BODY);
             CharSequence text = body != null ? body : "";
 
-            if (options.hasArgument(IS_HTML) && (boolean) options.argument(IS_HTML)) {
+            if (options.hasArgument(IS_HTML) && options.argument(IS_HTML) != null && (Boolean) options.argument(IS_HTML)) {
                 text = fromHtml((String) text);
             }
             intent.putExtra(Intent.EXTRA_TEXT, text);
@@ -167,7 +167,7 @@ class MethodCallHandlerImpl implements MethodChannel.MethodCallHandler, PluginRe
         PackageManager manager = context.getPackageManager();
         List<ResolveInfo> list = manager.queryIntentActivities(intent, 0);
 
-        if (list == null || list.size() == 0) {
+        if (list.size() == 0) {
             Log.e(TAG, "size is null or Zero");
             throw new FlutterMailerException("not_available", "no email Managers available", null);
         }
