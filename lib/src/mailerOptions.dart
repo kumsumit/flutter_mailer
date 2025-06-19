@@ -1,4 +1,4 @@
-part of flutter_mailer;
+part of '../flutter_mailer.dart';
 
 class MailOptions {
   static const String GMAIL = 'com.google.android.gm';

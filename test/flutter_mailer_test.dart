@@ -5,23 +5,30 @@ import 'package:flutter_mailer/flutter_mailer.dart';
 void main() {
   const MethodChannel channel = MethodChannel('flutter_mailer');
 
+  Future<Object?>? channelMethod(MethodCall methodCall) async {
+    switch (methodCall.method) {
+      case 'send':
+        return null;
+      case 'isAppInstalled':
+        return true;
+      default:
+        return null;
+    }
+  }
+
   TestWidgetsFlutterBinding.ensureInitialized();
 
   setUp(() {
-    channel.setMockMethodCallHandler((MethodCall methodCall) async {
-      switch (methodCall.method) {
-        case 'send':
-          return null;
-        case 'isAppInstalled':
-          return true;
-        default:
-          return null;
-      }
-    });
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
+      channel,
+      channelMethod,
+    );
   });
 
   tearDown(() {
-    channel.setMockMethodCallHandler(null);
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(channel, null);
   });
 
   test('send', () async {
