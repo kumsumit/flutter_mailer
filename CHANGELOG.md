@@ -1,3 +1,9 @@
+### 3.0.1
+  [root] add analysis options
+  [test] remove usage of deprecated `setMockMethodCallHandler` in tests
+  [root] add github actions for pull requests analysis
+  [Example] example updated and tests
+
 ## 3.0.0
   [Android] update constaints AGP. 
             remove registerWith java code. 
