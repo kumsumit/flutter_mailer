@@ -16,9 +16,10 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   bool useTempDirectory = true;
   List<String> attachment = <String>[];
-  final TextEditingController _subjectController = TextEditingController(text: 'the Subject');
-  final TextEditingController _bodyController =
-      TextEditingController(text: '''  <em>the body has <code>HTML</code></em> <br><br><br>
+  final TextEditingController _subjectController =
+      TextEditingController(text: 'the Subject');
+  final TextEditingController _bodyController = TextEditingController(
+      text: '''  <em>the body has <code>HTML</code></em> <br><br><br>
   <strong>Some Apps like Gmail might ignore it</strong>
   ''');
   // Platform messages are asynchronous, so we initialize in an async method.
@@ -26,7 +27,8 @@ class _MyAppState extends State<MyApp> {
     if (Platform.isIOS) {
       final bool canSend = await FlutterMailer.canSendMail();
       if (!canSend) {
-        const SnackBar snackbar = const SnackBar(content: Text('no Email App Available'));
+        const SnackBar snackbar =
+            const SnackBar(content: Text('no Email App Available'));
         ScaffoldMessenger.of(context).showSnackBar(snackbar);
         return;
       }
@@ -322,7 +324,8 @@ class _MyAppState extends State<MyApp> {
                 ElevatedButton(
                   child: const Icon(Icons.save),
                   onPressed: () {
-                    final TempFile tempFile = TempFile(content: content, name: fileName);
+                    final TempFile tempFile =
+                        TempFile(content: content, name: fileName);
                     // Map.from({'content': content, 'fileName': fileName});
                     Navigator.of(context).pop<TempFile>(tempFile);
                   },
