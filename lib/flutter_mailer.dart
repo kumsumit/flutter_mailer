@@ -9,7 +9,7 @@ part 'src/mailerOptions.dart';
 part 'src/FlutterMailerSendResponse.dart';
 
 class FlutterMailer {
-  static const MethodChannel _channel = const MethodChannel('flutter_mailer');
+  static const MethodChannel _channel = MethodChannel('flutter_mailer');
 
   static Future<MailerResponse> send(MailOptions mailOptions) async {
     final dynamic response =

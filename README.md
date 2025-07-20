@@ -6,7 +6,7 @@
 
 Simple & quick plugin for cross application data sharing of email fields in mobile development. 
 
-**Flutter Mailer** [example app](https://github.com/JaysQubeXon/flutter_mailer/blob/master/example/README.md)
+**Flutter Mailer** [example app](https://github.com/taljacobson/flutter_mailer/blob/master/example/README.md)
 
 ## Supports:
 
@@ -21,10 +21,10 @@ Add to your pubspec dependencies, like so:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_mailer: ^2.0.0
+  flutter_mailer: ^3.0.0
 
 ```
-Instantiate mail options as [follows](https://github.com/JaysQubeXon/flutter_mailer/blob/master/example/lib/main.dart#L29):
+Instantiate mail options as [follows](https://github.com/taljacobson/flutter_mailer/blob/master/example/lib/main.dart#L36):
 
 ### send email
 

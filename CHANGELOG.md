@@ -1,5 +1,21 @@
+### 3.0.1
+  [root] add analysis options
+  [test] remove usage of deprecated `setMockMethodCallHandler` in tests
+  [root] add github actions for pull requests analysis
+  [Example] example updated and tests
+
+## 3.0.0
+  [Android] update constaints AGP. 
+            remove registerWith java code. 
+            update minSDK version needed. this is the main breaking change which required a major version bump.
+  [Example] example updated
+
+## 2.1.2
+  [Android] Fix AGP 8.x namespace declaration
+
 ## 2.1.1
   [Android] set minSDKVersion back to 16
+
 ## 2.1.0
   [Android] republish 2.0.3 [issue #55](https://github.com/taljacobson/flutter_mailer/issues/47) do to increased minSdkVersion
 

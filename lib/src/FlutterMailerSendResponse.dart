@@ -1,4 +1,4 @@
-part of flutter_mailer;
+part of '../flutter_mailer.dart';
 
 /// ### Mailer Send response.
 /// only [ios] can return `sent | saved | cancelled`

@@ -9,11 +9,12 @@ import 'package:path_provider/path_provider.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
   @override
-  _MyAppState createState() => _MyAppState();
+  MyAppState createState() => MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class MyAppState extends State<MyApp> {
   bool useTempDirectory = true;
   List<String> attachment = <String>[];
   final TextEditingController _subjectController =
@@ -27,10 +28,11 @@ class _MyAppState extends State<MyApp> {
     if (Platform.isIOS) {
       final bool canSend = await FlutterMailer.canSendMail();
       if (!canSend) {
-        const SnackBar snackbar =
-            const SnackBar(content: Text('no Email App Available'));
-        ScaffoldMessenger.of(context).showSnackBar(snackbar);
-        return;
+        if (context.mounted) {
+          const SnackBar snackbar =
+              SnackBar(content: Text('no Email App Available'));
+          ScaffoldMessenger.of(context).showSnackBar(snackbar);
+        }
       }
     }
 
@@ -68,8 +70,7 @@ class _MyAppState extends State<MyApp> {
       }
     } on PlatformException catch (error) {
       platformResponse = error.toString();
-      print(error);
-      if (!mounted) {
+      if (!mounted || !context.mounted) {
         return;
       }
       await showDialog<void>(
@@ -99,7 +100,7 @@ class _MyAppState extends State<MyApp> {
     // If the widget was removed from the tree while the asynchronous platform
     // message was in flight, we want to discard the reply rather than calling
     // setState to update our non-existent appearance.
-    if (!mounted) {
+    if (!mounted || !context.mounted) {
       return;
     }
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -294,7 +295,7 @@ class _MyAppState extends State<MyApp> {
               onChanged: (String str) => fileName = str,
               autofocus: true,
               decoration: const InputDecoration(
-                suffix: const Text('.txt'),
+                suffix: Text('.txt'),
                 labelText: 'file name',
                 alignLabelWithHint: true,
               ),
@@ -311,10 +312,7 @@ class _MyAppState extends State<MyApp> {
             ),
             Row(
               children: [
-                Text(
-                  'use Temp directory',
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
+                Text('use Temp directory'),
                 Switch(
                   value: useTempDirectory,
                   onChanged: Platform.isAndroid
@@ -331,9 +329,6 @@ class _MyAppState extends State<MyApp> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Theme.of(context).colorScheme.secondary, backgroundColor: Theme.of(context).colorScheme.secondary,
-                  ),
                   child: const Icon(Icons.save),
                   onPressed: () {
                     final TempFile tempFile =
@@ -372,7 +367,7 @@ class _MyAppState extends State<MyApp> {
     final File file = await _localFile(fileName);
 
     // Write the file
-    return file.writeAsString('$text');
+    return file.writeAsString(text);
   }
 }
 
